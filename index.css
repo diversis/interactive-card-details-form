@@ -1,0 +1,361 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+/* ------------------- */
+
+/* Reset styles     */
+
+/* ------------------- */
+
+/* Set core root defaults */
+:root {
+    --white: hsl(0deg 0% 100%);
+    --light-grayish-violet: hsl(270deg 3% 87%);
+    --dark-grayish-violet: hsl(279deg 6% 55%);
+    --very-dark-violet: hsl(278deg 68% 11%);
+    --error: hsl(0deg 100% 66%);
+    --input-gradient: hsl(249deg 99% 64%) to hsl(278deg 94% 30%);
+    --desktop: 1440px;
+
+    font-synthesis: none;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; /* for iOS Safari */
+    text-size-adjust: 100%; /* for other mobile browsers */
+}
+
+html {
+    font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+        Ubuntu, Cantarell, "Noto Sans", sans-serif;
+    background-color: var(--light-grayish-blue);
+    color: var(--very-dark-grayish-blue);
+    font-weight: 500;
+    font-size: 18px;
+    color-scheme: light dark;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    text-rendering: optimizespeed;
+    overflow-y: auto;
+    position: relative;
+    background-color: var(--white);
+}
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    color: inherit;
+    margin: 0;
+}
+
+/* reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* remove the outline for mouse users but keep it for keyboard users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* provide interactive elements with a cursor */
+label,
+button,
+select,
+summary,
+[type="radio"],
+[type="submit"],
+[type="checkbox"] {
+    cursor: pointer;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--very-dark-violet);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--light-grayish-violet);
+    border-radius: 100px;
+}
+
+/* ------------------------- */
+
+/*          layout           */
+
+/* ------------------------- */
+.wrapper {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: minmax(33%, 33vh) 1fr;
+    width: 100%;
+    min-height: 100vh;
+}
+
+@media (min-width: 1280px) {
+    .wrapper {
+        grid-template-columns: minmax(33%, 33vh) 1fr;
+        grid-template-rows: minmax(0, 1fr);
+    }
+}
+
+.grid {
+    display: grid;
+}
+
+.container {
+    width: 100%;
+}
+
+@media (min-width: 375px) {
+    .container {
+        max-width: 375px;
+    }
+}
+
+@media (min-width: 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1536px;
+    }
+}
+
+.form-card {
+}
+
+.form-aside {
+    display: grid;
+    place-items: center;
+    background-image: url("./images/bg-main-mobile.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+@media (min-width: 1280px) {
+    .form-aside {
+        background-image: url("./images/bg-main-desktop.png");
+    }
+}
+
+.card-preview {
+    display: grid;
+    justify-self: end;
+    grid-template-areas:
+        "back"
+        "front";
+    /* aspect-ratio: 42/23; */
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: min(500px, calc(100vw - 2rem));
+    position: relative;
+}
+
+@media (min-width: 1280px) {
+    .card-preview {
+        grid-template-areas:
+            "front"
+            "back";
+        height: min(50vh, 600px);
+        width: 100%;
+        gap: 2rem;
+        /* max-width: initial; */
+    }
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: min-content;
+}
+
+.card-front {
+    --card-padding: 0.5rem;
+    grid-area: front;
+    top: 0;
+    z-index: 100;
+    left: 0;
+}
+
+@media (min-width: 375px) {
+    .card-front {
+        --card-padding: 1.5rem;
+    }
+}
+
+.card-back {
+    grid-area: back;
+    z-index: 50;
+    top: 15%;
+    right: 0;
+}
+
+@media (min-width: 1280px) {
+    .card-front {
+        inset: revert;
+        bottom: 0;
+        left: 30%;
+    }
+
+    .card-back {
+        inset: revert;
+        top: 0%;
+        left: 55%;
+    }
+}
+
+.card-front-bg,
+.card-back-bg {
+    max-width: 80vw;
+    max-block-size: 25vh;
+    /* max-width: revert;
+    height: fit-content; */
+}
+
+.card-front > *:not(.card-front-bg) {
+    position: absolute;
+}
+
+.card-back > *:not(.card-back-bg) {
+    position: absolute;
+}
+
+.card-front-number {
+    top: 50%;
+    left: var(--card-padding);
+}
+
+.card-front-owner {
+    bottom: var(--card-padding);
+    left: var(--card-padding);
+}
+
+.card-front-date {
+    right: var(--card-padding);
+    bottom: var(--card-padding);
+}
+
+.card-front-logo {
+    top: var(--card-padding);
+    left: var(--card-padding);
+    max-width: 20%;
+}
+
+.card-back-cvc {
+    right: 3.5rem;
+    top: 44%;
+}
+
+.form-wrapper {
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+.form-card {
+    outline: 1px solid green;
+    padding-inline: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 1280px) {
+    .form-card {
+        padding-left: 8rem;
+        padding-right: 2rem;
+        width: 60%;
+    }
+}
