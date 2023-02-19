@@ -9,12 +9,13 @@
 /* Set core root defaults */
 :root {
     --white: hsl(0deg 0% 100%);
-    --light-grayish-violet: hsl(270deg 3% 87%);
-    --dark-grayish-violet: hsl(279deg 6% 55%);
-    --very-dark-violet: hsl(278deg 68% 11%);
-    --error: hsl(0deg 100% 66%);
-    --input-gradient: hsl(249deg 99% 64%), hsl(278deg 94% 30%);
-    --desktop: 1440px;
+    --clr-primary: hsl(270deg 3% 87%);
+    --clr-secondary: hsl(279deg 6% 55%);
+    --clr-surface: hsl(278deg 68% 11%);
+    --clr-error: hsl(0deg 100% 66%);
+    --clr-accent-1: hsl(249deg 99% 64%);
+    --clr-accent-2: hsl(278deg 94% 30%);
+    --input-gradient: var(--clr-accent-1), var(--clr-accent-2);
 
     font-synthesis: none;
     text-rendering: optimizelegibility;
@@ -145,12 +146,12 @@ summary,
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--very-dark-violet);
+    background-color: var(--clr-surface);
     border-radius: 100px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--light-grayish-violet);
+    background-color: var(--clr-primary);
     border-radius: 100px;
 }
 
@@ -286,7 +287,7 @@ summary,
     z-index: 50;
     top: -160%;
     right: 0;
-    color: var(--very-dark-violet);
+    color: var(--clr-surface);
 }
 
 @media screen and (min-width: 1280px) {
@@ -331,14 +332,14 @@ summary,
 
 @media screen and (min-width: 480px) {
     .card-front-number {
-        font-size: 120%;
+        font-size: 140%;
         letter-spacing: 0.1rem;
     }
 }
 
 @media screen and (min-width: 640px) {
     .card-front-number {
-        font-size: 150%;
+        font-size: 110%;
         letter-spacing: 0.2rem;
     }
 }
@@ -347,15 +348,17 @@ summary,
     bottom: var(--card-padding);
     left: var(--card-padding);
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
     max-width: 80%;
     max-height: 1.5em;
     overflow: hidden;
+    font-size: 70%;
 }
 
 @media screen and (min-width: 640px) {
     .card-front-cardholder {
         letter-spacing: 0.1rem;
+        font-size: 75%;
     }
 }
 
@@ -366,6 +369,14 @@ summary,
     max-height: 1.5em;
     overflow: hidden;
     text-transform: uppercase;
+    font-size: 70%;
+}
+
+@media screen and (min-width: 640px) {
+    .card-front-date {
+        letter-spacing: 0.1rem;
+        font-size: 75%;
+    }
 }
 
 .card-front-logo {
@@ -459,7 +470,7 @@ summary,
 
 .form-date-fieldset:focus-within > legend,
 .form-date-fieldset:valid > legend {
-    color: var(--very-dark-violet);
+    color: var(--clr-surface);
 }
 
 .form-card input[type="text"] {
@@ -468,7 +479,7 @@ summary,
     height: 2em;
     width: 100%;
     background-color: var(--white);
-    border-color: var(--light-grayish-violet);
+    border-color: var(--clr-primary);
     border-width: 2px;
     border-style: solid;
     border-radius: 0.5rem;
@@ -478,7 +489,6 @@ summary,
 
 .form-card input[type="text"]:focus {
     border-color: transparent;
-    /* background-color: transparent; */
     outline: transparent;
     margin: 2px;
     width: calc(100% - 4px);
@@ -491,24 +501,24 @@ summary,
     left: 1em;
     transition: all 500ms ease-in-out;
     text-transform: uppercase;
-    color: var(--light-grayish-violet);
+    color: var(--clr-primary);
     pointer-events: none;
     font-size: var(--form-label-font-size);
     z-index: 200;
 }
 
 .form-card input[type="text"]:focus + label,
-.form-card input[type="text"]:valid + label {
+.form-card input[type="text"]:not([value=""]) + label {
     display: inline;
     left: 0;
     transform: translateY(-2.25em);
 
-    color: var(--very-dark-violet);
+    color: var(--clr-surface);
 }
 
 .form-card input[type="text"]::placeholder {
     text-transform: uppercase;
-    color: var(--light-grayish-violet);
+    color: var(--clr-primary);
     pointer-events: none;
     font-size: var(--form-label-font-size);
 }

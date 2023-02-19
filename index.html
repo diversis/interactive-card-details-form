@@ -43,10 +43,15 @@
                         <span id="card-front-number" class="card-front-number"
                             >0000 0000 0000 0000</span
                         >
-                        <span class="card-front-cardholder"
+                        <span
+                            id="card-front-cardholder"
+                            class="card-front-cardholder"
                             >Jane Appleseed</span
                         >
-                        <span class="card-front-date">mm / yy</span>
+                        <span class="card-front-date"
+                            ><span id="card-front-mm">mm </span>/
+                            <span id="card-front-yy">yy</span></span
+                        >
                     </div>
                     <!-- Card back preview -->
                     <div class="card-back">
@@ -55,7 +60,9 @@
                             src="./images/bg-card-back.png"
                             alt="card back preview"
                         />
-                        <span class="card-back-cvc">000</span>
+                        <span id="card-back-cvc" class="card-back-cvc"
+                            >000</span
+                        >
                     </div>
                 </div>
             </aside>
@@ -67,8 +74,10 @@
                         <input
                             autocomplete="cc-name"
                             type="text"
+                            id="cardholder-name"
                             aria-label="cardholder name"
                             name="cardholder"
+                            value=""
                             required
                         />
                         <label for="cardholder">cardholder name</label>
@@ -82,6 +91,7 @@
                             name="card-number"
                             id="card-number-input"
                             pattern="\d{0,16}"
+                            value=""
                             required
                         />
                         <label for="card-number">card number</label>
@@ -93,22 +103,26 @@
                             <!-- Card Expiration Date MM -->
                             <div class="form-input-wrap">
                                 <input
+                                    id="expiration-date-mm"
                                     autocomplete="cc-exp-month"
                                     type="text"
                                     aria-label="expiration date month"
                                     name="expiration-date-mm"
                                     placeholder="MM"
+                                    value=""
                                     required
                                 />
                             </div>
                             <!-- Card Expiration Date YY -->
                             <div class="form-input-wrap">
                                 <input
+                                    id="expiration-date-yy"
                                     autocomplete="cc-exp-year"
                                     type="text"
                                     aria-label="expiration date year"
                                     name="expiration-date-yy"
                                     placeholder="YY"
+                                    value=""
                                     required
                                 />
                             </div>
@@ -119,10 +133,12 @@
                                 autocomplete="cc-csc"
                                 type="text"
                                 aria-label="card cvc"
+                                id="card-cvc-input"
                                 name="card-cvc"
+                                value=""
                                 required
                             />
-                            <label for="card-cvc">cvc</label>
+                            <label for="card-cvc-input">cvc</label>
                         </div>
                     </div>
                     Thank you! We've added your card details Continue
