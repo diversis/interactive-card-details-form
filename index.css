@@ -13,7 +13,7 @@
     --dark-grayish-violet: hsl(279deg 6% 55%);
     --very-dark-violet: hsl(278deg 68% 11%);
     --error: hsl(0deg 100% 66%);
-    --input-gradient: hsl(249deg 99% 64%) to hsl(278deg 94% 30%);
+    --input-gradient: hsl(249deg 99% 64%), hsl(278deg 94% 30%);
     --desktop: 1440px;
 
     font-synthesis: none;
@@ -29,8 +29,14 @@ html {
     background-color: var(--light-grayish-blue);
     color: var(--very-dark-grayish-blue);
     font-weight: 500;
-    font-size: 18px;
+    font-size: 14px;
     color-scheme: light dark;
+}
+
+@media screen and (min-width: 640px) {
+    html {
+        font-size: 18px;
+    }
 }
 
 html,
@@ -161,7 +167,7 @@ summary,
     min-height: 100vh;
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
     .wrapper {
         grid-template-columns: minmax(33%, 33vh) 1fr;
         grid-template-rows: minmax(0, 1fr);
@@ -176,43 +182,40 @@ summary,
     width: 100%;
 }
 
-@media (min-width: 375px) {
+@media screen and (min-width: 375px) {
     .container {
         max-width: 375px;
     }
 }
 
-@media (min-width: 640px) {
+@media screen and (min-width: 640px) {
     .container {
         max-width: 640px;
     }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .container {
         max-width: 768px;
     }
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
     .container {
         max-width: 1024px;
     }
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
     .container {
         max-width: 1280px;
     }
 }
 
-@media (min-width: 1536px) {
+@media screen and (min-width: 1536px) {
     .container {
         max-width: 1536px;
     }
-}
-
-.form-card {
 }
 
 .form-aside {
@@ -224,7 +227,7 @@ summary,
     background-position: top;
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
     .form-aside {
         background-image: url("./images/bg-main-desktop.png");
     }
@@ -232,19 +235,19 @@ summary,
 
 .card-preview {
     display: grid;
-    justify-self: end;
+    align-self: end;
     grid-template-areas:
         "back"
         "front";
     /* aspect-ratio: 42/23; */
     place-items: center;
-    height: 100%;
+    height: 50%;
     width: 100%;
     max-width: min(500px, calc(100vw - 2rem));
     position: relative;
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
     .card-preview {
         grid-template-areas:
             "front"
@@ -252,7 +255,8 @@ summary,
         height: min(50vh, 600px);
         width: 100%;
         gap: 2rem;
-        /* max-width: initial; */
+        justify-self: end;
+        align-self: center;
     }
 }
 
@@ -265,12 +269,13 @@ summary,
 .card-front {
     --card-padding: 0.5rem;
     grid-area: front;
-    top: 0;
+    top: -90%;
     z-index: 100;
     left: 0;
+    color: var(--white);
 }
 
-@media (min-width: 375px) {
+@media screen and (min-width: 375px) {
     .card-front {
         --card-padding: 1.5rem;
     }
@@ -279,11 +284,12 @@ summary,
 .card-back {
     grid-area: back;
     z-index: 50;
-    top: 15%;
+    top: -160%;
     right: 0;
+    color: var(--very-dark-violet);
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
     .card-front {
         inset: revert;
         bottom: 0;
@@ -314,18 +320,52 @@ summary,
 }
 
 .card-front-number {
-    top: 50%;
+    bottom: 30%;
+    max-width: 100%;
+    max-height: 1.5em;
+    overflow: hidden;
+    font-size: 110%;
+    letter-spacing: 0.05rem;
     left: var(--card-padding);
 }
 
-.card-front-owner {
+@media screen and (min-width: 480px) {
+    .card-front-number {
+        font-size: 120%;
+        letter-spacing: 0.1rem;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .card-front-number {
+        font-size: 150%;
+        letter-spacing: 0.2rem;
+    }
+}
+
+.card-front-cardholder {
     bottom: var(--card-padding);
     left: var(--card-padding);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    max-width: 80%;
+    max-height: 1.5em;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 640px) {
+    .card-front-cardholder {
+        letter-spacing: 0.1rem;
+    }
 }
 
 .card-front-date {
     right: var(--card-padding);
     bottom: var(--card-padding);
+    max-width: 20%;
+    max-height: 1.5em;
+    overflow: hidden;
+    text-transform: uppercase;
 }
 
 .card-front-logo {
@@ -343,19 +383,132 @@ summary,
     display: grid;
     place-items: center;
     width: 100%;
+    padding-top: min(4rem, 10vh);
 }
+
+@media screen and (min-width: 1280px) {
+    .form-wrapper {
+        padding-left: min(10rem, 20vw);
+        padding-top: 0;
+    }
+}
+
 .form-card {
-    outline: 1px solid green;
-    padding-inline: 2rem;
+    --form-padding: 2rem;
+    --form-label-font-size: 80%;
+    /* outline: 1px solid green; */
+    padding-inline: var(--form-padding);
+    padding-top: var(--form-padding);
+    padding-bottom: var(--form-padding);
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: min(50rem, 100%);
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
     .form-card {
-        padding-left: 8rem;
-        padding-right: 2rem;
-        width: 60%;
+        width: min(50rem, 33vw);
     }
+}
+
+.form-input-wrap {
+    background: linear-gradient(217deg, var(--input-gradient));
+    position: relative;
+    height: 2em;
+    border-radius: 0.55rem;
+    background-size: 800% 800%;
+    animation: input-border 5s ease-in-out infinite;
+}
+
+@keyframes input-border {
+    0%,
+    100% {
+        background-position: top left;
+    }
+    50% {
+        background-position: bottom right;
+    }
+}
+
+.form-input-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    gap: 2rem;
+    width: 100%;
+}
+
+.form-date-fieldset {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+
+    min-inline-size: min-content;
+    border: none;
+}
+.form-date-fieldset > legend {
+    text-transform: uppercase;
+    color: var(--light-grayish-blue);
+    padding-bottom: 0.45em;
+    font-size: var(--form-label-font-size);
+}
+
+.form-date-fieldset:focus-within > legend,
+.form-date-fieldset:valid > legend {
+    color: var(--very-dark-violet);
+}
+
+.form-card input[type="text"] {
+    position: absolute;
+    inset: 0;
+    height: 2em;
+    width: 100%;
+    background-color: var(--white);
+    border-color: var(--light-grayish-violet);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 0.5rem;
+    padding-inline: 1em;
+    z-index: 100;
+}
+
+.form-card input[type="text"]:focus {
+    border-color: transparent;
+    /* background-color: transparent; */
+    outline: transparent;
+    margin: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+}
+
+.form-card input[type="text"] + label {
+    position: absolute;
+    top: 0.75em;
+    left: 1em;
+    transition: all 500ms ease-in-out;
+    text-transform: uppercase;
+    color: var(--light-grayish-violet);
+    pointer-events: none;
+    font-size: var(--form-label-font-size);
+    z-index: 200;
+}
+
+.form-card input[type="text"]:focus + label,
+.form-card input[type="text"]:valid + label {
+    display: inline;
+    left: 0;
+    transform: translateY(-2.25em);
+
+    color: var(--very-dark-violet);
+}
+
+.form-card input[type="text"]::placeholder {
+    text-transform: uppercase;
+    color: var(--light-grayish-violet);
+    pointer-events: none;
+    font-size: var(--form-label-font-size);
 }

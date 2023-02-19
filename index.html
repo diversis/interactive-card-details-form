@@ -25,8 +25,10 @@
     </head>
     <body>
         <main class="wrapper">
+            <!-- Aside part with card previews -->
             <aside class="form-aside">
                 <div class="card-preview">
+                    <!-- Card front preview -->
                     <div class="card-front">
                         <img
                             class="card-front-bg"
@@ -38,12 +40,15 @@
                             src="./images/card-logo.svg"
                             alt="card front logo"
                         />
-                        <span class="card-front-number"
+                        <span id="card-front-number" class="card-front-number"
                             >0000 0000 0000 0000</span
                         >
-                        <span class="card-front-owner">Jane Appleseed</span>
+                        <span class="card-front-cardholder"
+                            >Jane Appleseed</span
+                        >
                         <span class="card-front-date">mm / yy</span>
                     </div>
+                    <!-- Card back preview -->
                     <div class="card-back">
                         <img
                             class="card-back-bg"
@@ -55,9 +60,71 @@
                 </div>
             </aside>
             <div class="form-wrapper">
-                <form class="form-card">
-                    <input type="text" />
+                <!-- Form -->
+                <form id="form-card" class="form-card">
+                    <!-- Cardholder Name -->
+                    <div class="form-input-wrap">
+                        <input
+                            autocomplete="cc-name"
+                            type="text"
+                            aria-label="cardholder name"
+                            name="cardholder"
+                            required
+                        />
+                        <label for="cardholder">cardholder name</label>
+                    </div>
+                    <!-- Card Number -->
+                    <div class="form-input-wrap">
+                        <input
+                            type="text"
+                            autocomplete="cc-number"
+                            aria-label="card number"
+                            name="card-number"
+                            id="card-number-input"
+                            pattern="\d{0,16}"
+                            required
+                        />
+                        <label for="card-number">card number</label>
+                    </div>
 
+                    <div class="form-input-row">
+                        <fieldset class="form-date-fieldset">
+                            <legend>Exp. Date (MM/YY)</legend>
+                            <!-- Card Expiration Date MM -->
+                            <div class="form-input-wrap">
+                                <input
+                                    autocomplete="cc-exp-month"
+                                    type="text"
+                                    aria-label="expiration date month"
+                                    name="expiration-date-mm"
+                                    placeholder="MM"
+                                    required
+                                />
+                            </div>
+                            <!-- Card Expiration Date YY -->
+                            <div class="form-input-wrap">
+                                <input
+                                    autocomplete="cc-exp-year"
+                                    type="text"
+                                    aria-label="expiration date year"
+                                    name="expiration-date-yy"
+                                    placeholder="YY"
+                                    required
+                                />
+                            </div>
+                        </fieldset>
+                        <!-- Card CVC -->
+                        <div class="form-input-wrap">
+                            <input
+                                autocomplete="cc-csc"
+                                type="text"
+                                aria-label="card cvc"
+                                name="card-cvc"
+                                required
+                            />
+                            <label for="card-cvc">cvc</label>
+                        </div>
+                    </div>
                     Thank you! We've added your card details Continue
                 </form>
             </div>
@@ -71,6 +138,6 @@
             </div>
             <div id="app"></div>
         </main>
-        <!-- <script type="module" src="/main.js"></script> -->
+        <script type="module" src="/main.js"></script>
     </body>
 </html>
