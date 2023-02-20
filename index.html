@@ -68,6 +68,7 @@
                     </div>
                 </div>
             </aside>
+
             <div class="form-wrapper">
                 <!-- Form -->
                 <form id="form-card" class="form-card" action="#">
@@ -79,10 +80,15 @@
                             id="cardholder-name"
                             aria-label="cardholder name"
                             name="cardholder"
+                            placeholder=" "
                             value=""
-                            required
                         />
+
                         <label for="cardholder">cardholder name</label>
+                        <span
+                            id="error-cardholder-name"
+                            class="form-error"
+                        ></span>
                     </div>
                     <!-- Card Number -->
                     <div class="form-input-wrap">
@@ -91,12 +97,13 @@
                             autocomplete="cc-number"
                             aria-label="card number"
                             name="card-number"
-                            id="card-number-input"
-                            pattern="^\d{0,16}$"
+                            id="card-number"
+                            placeholder=" "
                             value=""
-                            required
                         />
+
                         <label for="card-number">card number</label>
+                        <span id="error-card-number" class="form-error"></span>
                     </div>
 
                     <div class="form-input-row">
@@ -112,8 +119,12 @@
                                     name="expiration-date-mm"
                                     placeholder="MM"
                                     value=""
-                                    required
                                 />
+
+                                <span
+                                    id="error-expiration-date-mm"
+                                    class="form-error"
+                                ></span>
                             </div>
                             <!-- Card Expiration Date YY -->
                             <div class="form-input-wrap">
@@ -125,8 +136,11 @@
                                     name="expiration-date-yy"
                                     placeholder="YY"
                                     value=""
-                                    required
                                 />
+                                <span
+                                    id="error-expiration-date-yy"
+                                    class="form-error"
+                                ></span>
                             </div>
                         </fieldset>
                         <!-- Card CVC -->
@@ -134,24 +148,39 @@
                             <input
                                 autocomplete="cc-csc"
                                 type="text"
+                                placeholder=" "
                                 aria-label="card cvc"
-                                id="card-cvc-input"
+                                id="card-cvc"
                                 name="card-cvc"
                                 value=""
-                                required
                             />
-                            <label for="card-cvc-input">cvc</label>
+                            <label for="card-cvc">cvc</label>
+                            <span id="error-card-cvc" class="form-error"></span>
                         </div>
                     </div>
                     <button
-                        id="card-form-confirm"
-                        type="confirm"
-                        class="card-form-confirm"
+                        id="card-form-submit"
+                        type="submit"
+                        class="card-form-button"
                     >
                         Confirm
                     </button>
-                    Thank you! We've added your card details Continue
                 </form>
+                <!-- Submitted -->
+                <div id="form-success" class="form-success" hidden>
+                    <img src="./images/icon-complete.svg" alt="complete" />
+                    <div>
+                        <h1>Thank you!</h1>
+                        <p>We've added your card details</p>
+                    </div>
+                    <button
+                        id="reset-form"
+                        class="card-form-button"
+                        type="button"
+                    >
+                        Continue
+                    </button>
+                </div>
             </div>
             <div class="attribution" hidden>
                 Challenge by

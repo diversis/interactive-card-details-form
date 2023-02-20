@@ -5,31 +5,33 @@ import {
     setupCardExpMMBind,
     setupCardExpYYBind,
 } from "./bind.js";
-import { setupFormSubmit } from "./form.js";
+import { setupFormSubmit, showForm } from "./form.js";
+if (window) {
+    setupCardNumberBind(
+        document.querySelector("#card-number"),
+        document.querySelector("#card-front-number")
+    );
 
-setupCardNumberBind(
-    document.querySelector("#card-number-input"),
-    document.querySelector("#card-front-number")
-);
+    setupCardCVCBind(
+        document.querySelector("#card-cvc"),
+        document.querySelector("#card-back-cvc")
+    );
 
-setupCardCVCBind(
-    document.querySelector("#card-cvc-input"),
-    document.querySelector("#card-back-cvc")
-);
+    setupCardholderNameBind(
+        document.querySelector("#cardholder-name"),
+        document.querySelector("#card-front-cardholder")
+    );
 
-setupCardholderNameBind(
-    document.querySelector("#cardholder-name"),
-    document.querySelector("#card-front-cardholder")
-);
+    setupCardExpMMBind(
+        document.querySelector("#expiration-date-mm"),
+        document.querySelector("#card-front-mm")
+    );
 
-setupCardExpMMBind(
-    document.querySelector("#expiration-date-mm"),
-    document.querySelector("#card-front-mm")
-);
+    setupCardExpYYBind(
+        document.querySelector("#expiration-date-yy"),
+        document.querySelector("#card-front-yy")
+    );
 
-setupCardExpYYBind(
-    document.querySelector("#expiration-date-yy"),
-    document.querySelector("#card-front-yy")
-);
-
-setupFormSubmit(document.querySelector("#form-card"));
+    setupFormSubmit(document.querySelector("#form-card"));
+    document.querySelector("#reset-form").onclick = showForm;
+}
