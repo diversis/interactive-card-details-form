@@ -49,8 +49,10 @@
                             >Jane Appleseed</span
                         >
                         <span class="card-front-date"
-                            ><span id="card-front-mm">mm </span>/
-                            <span id="card-front-yy">yy</span></span
+                            ><span id="card-front-mm">mm</span>/<span
+                                id="card-front-yy"
+                                >yy</span
+                            ></span
                         >
                     </div>
                     <!-- Card back preview -->
@@ -68,7 +70,7 @@
             </aside>
             <div class="form-wrapper">
                 <!-- Form -->
-                <form id="form-card" class="form-card">
+                <form id="form-card" class="form-card" action="#">
                     <!-- Cardholder Name -->
                     <div class="form-input-wrap">
                         <input
@@ -90,7 +92,7 @@
                             aria-label="card number"
                             name="card-number"
                             id="card-number-input"
-                            pattern="\d{0,16}"
+                            pattern="^\d{0,16}$"
                             value=""
                             required
                         />
@@ -99,7 +101,7 @@
 
                     <div class="form-input-row">
                         <fieldset class="form-date-fieldset">
-                            <legend>Exp. Date (MM/YY)</legend>
+                            <legend tabindex="-1">Exp. Date (MM/YY)</legend>
                             <!-- Card Expiration Date MM -->
                             <div class="form-input-wrap">
                                 <input
@@ -141,6 +143,13 @@
                             <label for="card-cvc-input">cvc</label>
                         </div>
                     </div>
+                    <button
+                        id="card-form-confirm"
+                        type="confirm"
+                        class="card-form-confirm"
+                    >
+                        Confirm
+                    </button>
                     Thank you! We've added your card details Continue
                 </form>
             </div>

@@ -5,6 +5,7 @@ import {
     setupCardExpMMBind,
     setupCardExpYYBind,
 } from "./bind.js";
+import { setupFormSubmit } from "./form.js";
 
 setupCardNumberBind(
     document.querySelector("#card-number-input"),
@@ -30,3 +31,5 @@ setupCardExpYYBind(
     document.querySelector("#expiration-date-yy"),
     document.querySelector("#card-front-yy")
 );
+
+setupFormSubmit(document.querySelector("#form-card"));

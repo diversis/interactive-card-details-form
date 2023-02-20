@@ -27,17 +27,7 @@
 html {
     font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
         Ubuntu, Cantarell, "Noto Sans", sans-serif;
-    background-color: var(--light-grayish-blue);
-    color: var(--very-dark-grayish-blue);
-    font-weight: 500;
-    font-size: 14px;
     color-scheme: light dark;
-}
-
-@media screen and (min-width: 640px) {
-    html {
-        font-size: 18px;
-    }
 }
 
 html,
@@ -55,6 +45,15 @@ body {
     overflow-y: auto;
     position: relative;
     background-color: var(--white);
+    color: var(--clr-surface);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+@media screen and (min-width: 640px) {
+    body {
+        font-size: 18px;
+    }
 }
 
 /* Box sizing */
@@ -240,6 +239,7 @@ summary,
     grid-template-areas:
         "back"
         "front";
+
     /* aspect-ratio: 42/23; */
     place-items: center;
     height: 50%;
@@ -253,7 +253,7 @@ summary,
         grid-template-areas:
             "front"
             "back";
-        height: min(50vh, 600px);
+        height: min(100vh, 600px);
         width: 100%;
         gap: 2rem;
         justify-self: end;
@@ -269,6 +269,7 @@ summary,
 
 .card-front {
     --card-padding: 0.5rem;
+
     grid-area: front;
     top: -90%;
     z-index: 100;
@@ -307,7 +308,8 @@ summary,
 .card-front-bg,
 .card-back-bg {
     max-width: 80vw;
-    max-block-size: 25vh;
+    /* max-block-size: 25vh; */
+
     /* max-width: revert;
     height: fit-content; */
 }
@@ -325,21 +327,27 @@ summary,
     max-width: 100%;
     max-height: 1.5em;
     overflow: hidden;
-    font-size: 110%;
+    font-size: 5.5vw;
     letter-spacing: 0.05rem;
     left: var(--card-padding);
 }
 
-@media screen and (min-width: 480px) {
+/* @media screen and (min-width: 320px) {
     .card-front-number {
         font-size: 140%;
+    }
+} */
+
+@media screen and (min-width: 480px) {
+    .card-front-number {
+        font-size: 200%;
         letter-spacing: 0.1rem;
     }
 }
 
 @media screen and (min-width: 640px) {
     .card-front-number {
-        font-size: 110%;
+        font-size: 160%;
         letter-spacing: 0.2rem;
     }
 }
@@ -407,39 +415,31 @@ summary,
 .form-card {
     --form-padding: 2rem;
     --form-label-font-size: 80%;
+
     /* outline: 1px solid green; */
     padding-inline: var(--form-padding);
     padding-top: var(--form-padding);
     padding-bottom: var(--form-padding);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5em;
     width: min(50rem, 100%);
 }
 
 @media screen and (min-width: 1280px) {
     .form-card {
         width: min(50rem, 33vw);
+        gap: 3em;
     }
 }
 
 .form-input-wrap {
     background: linear-gradient(217deg, var(--input-gradient));
     position: relative;
-    height: 2em;
+    height: 2.5em;
     border-radius: 0.55rem;
     background-size: 800% 800%;
-    animation: input-border 5s ease-in-out infinite;
-}
-
-@keyframes input-border {
-    0%,
-    100% {
-        background-position: top left;
-    }
-    50% {
-        background-position: bottom right;
-    }
+    animation: bg-slide 5s ease-in-out infinite;
 }
 
 .form-input-row {
@@ -453,30 +453,47 @@ summary,
 .form-date-fieldset {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     gap: 1rem;
     margin: 0;
     padding: 0;
-
     min-inline-size: min-content;
     border: none;
 }
+
 .form-date-fieldset > legend {
-    text-transform: uppercase;
-    color: var(--light-grayish-blue);
     padding-bottom: 0.45em;
+    color: var(--clr-surface);
     font-size: var(--form-label-font-size);
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    transition: all 250ms ease-in-out;
 }
 
+@supports selector(.form-date-fieldset:has(input[type="text"]:valid)) {
+    .form-date-fieldset > legend {
+        color: var(--clr-secondary);
+        opacity: 0.5;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .form-date-fieldset > legend {
+        letter-spacing: 0.1rem;
+    }
+}
+
+.form-date-fieldset:focus > legend,
 .form-date-fieldset:focus-within > legend,
-.form-date-fieldset:valid > legend {
+.form-date-fieldset:has(input[type="text"]:valid) > legend,
+.form-date-fieldset:has(input[type="text"]:not([value=""])) > legend {
     color: var(--clr-surface);
+    opacity: 1;
 }
 
 .form-card input[type="text"] {
     position: absolute;
     inset: 0;
-    height: 2em;
+    height: 2.5em;
     width: 100%;
     background-color: var(--white);
     border-color: var(--clr-primary);
@@ -497,28 +514,96 @@ summary,
 
 .form-card input[type="text"] + label {
     position: absolute;
-    top: 0.75em;
+    top: 1em;
     left: 1em;
-    transition: all 500ms ease-in-out;
-    text-transform: uppercase;
-    color: var(--clr-primary);
     pointer-events: none;
+    color: var(--clr-secondary);
+    letter-spacing: 0.05rem;
     font-size: var(--form-label-font-size);
+    text-transform: uppercase;
+    transition: all 500ms ease-in-out;
+    opacity: 0.5;
     z-index: 200;
+}
+
+@media screen and (min-width: 640px) {
+    .form-card input[type="text"] + label {
+        letter-spacing: 0.1rem;
+    }
 }
 
 .form-card input[type="text"]:focus + label,
 .form-card input[type="text"]:not([value=""]) + label {
     display: inline;
     left: 0;
-    transform: translateY(-2.25em);
-
+    transform: translateY(-2.65em);
     color: var(--clr-surface);
+    opacity: 1;
 }
 
 .form-card input[type="text"]::placeholder {
-    text-transform: uppercase;
-    color: var(--clr-primary);
+    color: var(--clr-secondary);
     pointer-events: none;
     font-size: var(--form-label-font-size);
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+@media screen and (min-width: 640px) {
+    .form-card input[type="text"]::placeholder {
+        letter-spacing: 0.1rem;
+    }
+}
+
+.card-form-confirm {
+    height: 2.5em;
+    padding-inline: 2em;
+    width: 100%;
+    background-color: var(--clr-surface);
+    border-radius: 0.5rem;
+    border-color: transparent;
+    color: var(--white);
+    transition: all 150ms ease-in-out;
+    letter-spacing: 0.05rem;
+    z-index: 50;
+}
+
+.card-form-confirm:hover,
+.card-form-confirm:focus {
+    position: relative;
+    background: linear-gradient(
+        217deg,
+        var(--input-gradient),
+        var(--clr-surface)
+    );
+    background-size: 800% 800%;
+    background-color: transparent;
+
+    animation: bg-slide 2s ease-in-out infinite;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .card-form-confirm:hover,
+    .card-form-confirm:focus {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        border: 2px solid var(--clr-accent-2);
+    }
+}
+.card-form-confirm:active {
+    border: 2px ridge var(--clr-accent-2);
+    box-shadow: inset 1px 1px 5px 3px var(--clr-accent-1);
+}
+
+@keyframes bg-slide {
+    0%,
+    100% {
+        background-position: top left;
+    }
+
+    50% {
+        background-position: bottom right;
+    }
 }
