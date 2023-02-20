@@ -25,24 +25,35 @@ function formReset() {
     cardNumberInput.setAttribute("value", "");
     cardholderNameInput.setAttribute("value", "");
     cardCVCInput.setAttribute("value", "");
+    cardExpDateMMInput.setCustomValidity("");
+    cardExpDateYYInput.setCustomValidity("");
+    cardNumberInput.setCustomValidity("");
+    cardholderNameInput.setCustomValidity("");
+    cardCVCInput.setCustomValidity("");
 }
 
 function showSuccessMessage() {
-    formCard.hasAttribute("hidden") ? null : formCard.toggleAttribute("hidden");
+    cardForm.hasAttribute("hidden") ? null : cardForm.toggleAttribute("hidden");
 
     successMessageNode.hasAttribute("hidden")
         ? successMessageNode.toggleAttribute("hidden")
         : null;
 }
 
-export function setupFormSubmit() {
-    cardExpDateMMInput.setCustomValidity("");
-    cardExpDateYYInput.setCustomValidity("");
-    cardNumberInput.setCustomValidity("");
-    cardholderNameInput.setCustomValidity("");
-    cardCVCInput.setCustomValidity("");
+function showForm() {
+    cardForm.hasAttribute("hidden") ? cardForm.toggleAttribute("hidden") : null;
 
-    form.onsubmit = handleFormSubmit;
+    successMessageNode.hasAttribute("hidden")
+        ? null
+        : successMessageNode.toggleAttribute("hidden");
+}
+
+export function setupFormSubmit() {
+    cardForm.onsubmit = handleFormSubmit;
+}
+
+export function setupSuccessMessage() {
+    successMessageNode.onclick = showForm;
 }
 
 function handleFormSubmit(e) {

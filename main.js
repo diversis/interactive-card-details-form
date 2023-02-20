@@ -5,7 +5,7 @@ import {
     setupCardExpMMBind,
     setupCardExpYYBind,
 } from "./bind.js";
-import { setupFormSubmit } from "./form.js";
+import { setupFormSubmit, setupSuccessMessage } from "./form.js";
 
 export let cardNumberErrorField;
 export let cardholderNameErrorField;
@@ -36,11 +36,19 @@ if (window) {
     cardExpDateYYInput = document.querySelector("#expiration-date-yy");
     cardCVCInput = document.querySelector("#card-cvc");
 
-    cardNumberErrorField;
-    cardholderNameErrorField;
-    cardExpDateMMErrorField;
-    cardExpDateYYErrorField;
-    cardCVCErrorField;
+    cardNumberErrorField =
+        cardNumberInput.parentElement.querySelector("#error-card-number");
+    cardholderNameErrorField = cardholderNameInput.parentElement.querySelector(
+        "#error-cardholder-name"
+    );
+    cardExpDateMMErrorField = cardExpDateMMInput.parentElement.querySelector(
+        "#error-expiration-date-mm"
+    );
+    cardExpDateYYErrorField = cardExpDateYYInput.parentElement.querySelector(
+        "#error-expiration-date-yy"
+    );
+    cardCVCErrorField =
+        cardCVCInput.parentElement.querySelector("#error-card-cvc");
 
     cardNumberPreview = document.querySelector("#card-front-number");
     cardholderNamePreview = document.querySelector("#card-front-cardholder");
@@ -63,4 +71,5 @@ if (window) {
     setupCardExpYYBind();
 
     setupFormSubmit();
+    setupSuccessMessage();
 }

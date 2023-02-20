@@ -312,6 +312,7 @@ summary,
 .card-front-bg,
 .card-back-bg {
     max-width: 80vw;
+
     /* max-block-size: 25vh; */
 
     /* max-width: revert;
@@ -428,7 +429,6 @@ summary,
     flex-direction: column;
     gap: 2.5em;
     width: min(30rem, 100%);
-
     overflow: hidden;
 }
 
@@ -590,7 +590,6 @@ summary,
     );
     background-size: 800% 800%;
     background-color: transparent;
-
     animation: bg-slide 2s ease-in-out infinite;
 }
 
@@ -603,6 +602,7 @@ summary,
         border: 2px solid var(--clr-accent-2);
     }
 }
+
 .card-form-button:active {
     border: 2px ridge var(--clr-accent-2);
     box-shadow: inset 1px 1px 5px 3px var(--clr-accent-1);
@@ -618,11 +618,11 @@ summary,
         background-position: bottom right;
     }
 }
+
 .form-error {
     position: absolute;
     top: 3.3em;
     left: 0;
-
     font-size: 80%;
     color: var(--clr-error);
     max-width: 120%;
@@ -633,7 +633,6 @@ summary,
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
-    width: 100%;
     place-items: center;
     padding: 2rem;
     width: min(30rem, 100%);
@@ -647,6 +646,7 @@ summary,
     text-align: center;
     text-transform: uppercase;
 }
+
 .form-success > div > p {
     text-align: center;
     color: var(--clr-secondary);
@@ -661,9 +661,11 @@ summary,
     100% {
         transform: translateX(0);
     }
+
     25% {
         transform: translateX(-0.25rem);
     }
+
     75% {
         transform: translateX(0.25rem);
     }

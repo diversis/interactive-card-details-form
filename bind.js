@@ -1,41 +1,45 @@
+import {
+    cardExpDateMMErrorField,
+    cardExpDateYYErrorField,
+    cardNumberErrorField,
+    cardholderNameErrorField,
+    cardCVCErrorField,
+    cardExpDateMMInput,
+    cardExpDateYYInput,
+    cardNumberInput,
+    cardholderNameInput,
+    cardCVCInput,
+    cardExpDateMMPreview,
+    cardExpDateYYPreview,
+    cardNumberPreview,
+    cardholderNamePreview,
+    cardCVCPreview,
+} from "./main";
 import { currentYear, currentYearDec } from "./vars";
-export let cardNumberErrorField;
-export let cardholderNameErrorField;
-export let cardExpDateMMErrorField;
-export let cardExpDateYYErrorField;
-export let cardCVCErrorField;
-export let cardNumberInput;
-export let cardholderNameInput;
-export let cardExpDateMMInput;
-export let cardExpDateYYInput;
-export let cardCVCInput;
 
-export function setupCardNumberBind(input, element) {
-    cardNumberInput = input;
-    cardNumberErrorField =
-        input.parentElement.querySelector("#error-card-number");
+export function setupCardNumberBind() {
     updateValue();
 
     function updateValue() {
-        input.value = input.value.replace(/\D/g, "");
-        let inputValue = input.value.trim();
+        cardNumberInput.value = cardNumberInput.value.replace(/\D/g, "");
+        let inputValue = cardNumberInput.value.trim();
         cardNumberErrorField.innerHTML = "";
-        input.setCustomValidity("");
+        cardNumberInput.setCustomValidity("");
         if (!inputValue) {
-            element.innerHTML = "0000 0000 0000 0000";
-            input.setAttribute("value", "");
+            cardNumberPreview.innerHTML = "0000 0000 0000 0000";
+            cardNumberInput.setAttribute("value", "");
 
             return;
         }
 
         if (inputValue.length > 16) {
             inputValue = inputValue.substring(0, 16);
-            input.value = inputValue;
-            input.setCustomValidity("Number too long. Max 16 digits");
+            cardNumberInput.value = inputValue;
+            cardNumberInput.setCustomValidity("Number too long. Max 16 digits");
             cardNumberErrorField.innerHTML = "Number too long. Max 16 digits";
             setTimeout(() => {
                 cardNumberErrorField.innerHTML = "";
-                input.setCustomValidity("");
+                cardNumberInput.setCustomValidity("");
             }, 3000);
             return;
         }
@@ -43,9 +47,9 @@ export function setupCardNumberBind(input, element) {
         console.log("number match: ", match);
         if (!!match && match.length > 0) {
             const newCard = match[0];
-            input.setAttribute("value", newCard);
+            cardNumberInput.setAttribute("value", newCard);
 
-            element.innerHTML =
+            cardNumberPreview.innerHTML =
                 "" +
                 newCard.substring(0, 4) +
                 " " +
@@ -58,31 +62,30 @@ export function setupCardNumberBind(input, element) {
         }
         cardNumberErrorField.innerHTML = "Invalid Number";
     }
-    input.oninput = updateValue;
-    input.onchange = updateValue;
+    cardNumberInput.oninput = updateValue;
+    cardNumberInput.onchange = updateValue;
 }
 
-export function setupCardholderNameBind(input, element) {
-    cardholderNameInput = input;
-    cardholderNameErrorField = input.parentElement.querySelector(
-        "#error-cardholder-name"
-    );
+export function setupCardholderNameBind() {
     updateValue();
 
     function updateValue() {
         cardholderNameErrorField.innerHTML = "";
-        input.setCustomValidity("");
-        input.value = input.value.replace(/[^-a-zA-Z' ]/g, "");
-        let inputValue = input.value.trim();
+        cardholderNameInput.setCustomValidity("");
+        cardholderNameInput.value = cardholderNameInput.value.replace(
+            /[^-a-zA-Z' ]/g,
+            ""
+        );
+        let inputValue = cardholderNameInput.value.trim();
         if (!inputValue) {
-            element.innerHTML = "JANE APPLESEED";
-            input.setAttribute("value", "");
+            cardholderNamePreview.innerHTML = "JANE APPLESEED";
+            cardholderNameInput.setAttribute("value", "");
             return;
         }
 
         if (inputValue.length > 26) {
             inputValue = inputValue.substring(0, 26);
-            input.value = inputValue;
+            cardholderNameInput.value = inputValue;
             cardholderNameErrorField.innerHTML =
                 "Name too long. max 26 characters";
             setTimeout(() => {
@@ -93,34 +96,32 @@ export function setupCardholderNameBind(input, element) {
         const match = inputValue.match(/^(?<! )[-a-zA-Z' ]{1,26}$/s);
         if (!!match && match.length > 0) {
             const newCardholder = match[0];
-            input.setAttribute("value", newCardholder);
-            element.innerHTML = newCardholder;
+            cardholderNameInput.setAttribute("value", newCardholder);
+            cardholderNamePreview.innerHTML = newCardholder;
             return;
         }
         cardholderNameErrorField.innerHTML = "invalid name";
     }
-    input.oninput = updateValue;
+    cardholderNameInput.oninput = updateValue;
 }
 
-export function setupCardCVCBind(input, element) {
-    cardCVCInput = input;
-    cardCVCErrorField = input.parentElement.querySelector("#error-card-cvc");
+export function setupCardCVCBind() {
     updateValue();
 
     function updateValue() {
         cardCVCErrorField.innerHTML = "";
-        input.setCustomValidity("");
-        input.value = input.value.replace(/\D/g, "");
-        let inputValue = input.value.trim();
+        cardCVCInput.setCustomValidity("");
+        cardCVCInput.value = cardCVCInput.value.replace(/\D/g, "");
+        let inputValue = cardCVCInput.value.trim();
         if (!inputValue) {
-            element.innerHTML = "000";
-            input.setAttribute("value", "");
+            cardCVCPreview.innerHTML = "000";
+            cardCVCInput.setAttribute("value", "");
             return;
         }
 
         if (inputValue.length > 3) {
             inputValue = inputValue.substring(0, 3);
-            input.value = inputValue;
+            cardCVCInput.value = inputValue;
             cardCVCErrorField.innerHTML = "Max 3 digits";
             setTimeout(() => {
                 cardCVCErrorField.innerHTML = "";
@@ -130,39 +131,34 @@ export function setupCardCVCBind(input, element) {
         const match = inputValue.match(/^\d{1,3}$/s);
         if (!!match && match.length > 0) {
             const newCVC = inputValue.match(/^\d{1,3}$/s)[0];
-            input.setAttribute("value", newCVC);
+            cardCVCInput.setAttribute("value", newCVC);
 
-            element.innerHTML = newCVC;
+            cardCVCPreview.innerHTML = newCVC;
             return;
         }
         cardCVCErrorField.innerHTML = "Invalid CVC";
     }
-    input.oninput = updateValue;
+    cardCVCInput.oninput = updateValue;
 }
 
-export function setupCardExpMMBind(input, element) {
-    cardExpDateMMErrorField = input.parentElement.querySelector(
-        "#error-expiration-date-mm"
-    );
-
-    cardExpDateMMInput = input;
+export function setupCardExpMMBind() {
     updateValue();
     function updateValue() {
         cardExpDateMMErrorField.innerHTML = "";
-        input.setCustomValidity("");
-        input.value = input.value.replace(/\D/g, "");
-        let inputValue = input.value.trim();
+        cardExpDateMMInput.setCustomValidity("");
+        cardExpDateMMInput.value = cardExpDateMMInput.value.replace(/\D/g, "");
+        let inputValue = cardExpDateMMInput.value.trim();
 
-        console.log("input: ", inputValue, "\nelement: ", element);
+        
         if (!inputValue) {
-            element.innerHTML = "MM";
-            input.setAttribute("value", "");
+            cardExpDateMMPreview.innerHTML = "MM";
+            cardExpDateMMInput.setAttribute("value", "");
             return;
         }
 
         if (inputValue.length > 2) {
             inputValue = inputValue.substring(0, 2);
-            input.value = inputValue;
+            cardExpDateMMInput.value = inputValue;
             cardExpDateMMErrorField.innerHTML = "Max 2 digits";
             setTimeout(() => {
                 cardExpDateMMErrorField.innerHTML = "";
@@ -173,21 +169,16 @@ export function setupCardExpMMBind(input, element) {
         if (!!match && match.length > 0) {
             const newExpMM = match[0];
 
-            input.setAttribute("value", newExpMM);
-            element.innerHTML = newExpMM;
+            cardExpDateMMInput.setAttribute("value", newExpMM);
+            cardExpDateMMPreview.innerHTML = newExpMM;
             return;
         }
         cardExpDateMMErrorField.innerHTML = "Invalid Date";
     }
-    input.oninput = updateValue;
+    cardExpDateMMInput.oninput = updateValue;
 }
 
-export function setupCardExpYYBind(input, element) {
-    cardExpDateYYErrorField = input.parentElement.querySelector(
-        "#error-expiration-date-yy"
-    );
-    cardExpDateYYInput = input;
-    input.value = input.value.replace(/\D/g, "");
+export function setupCardExpYYBind() {
     const yearRegex = new RegExp(
         `^[${currentYearDec}-${1 + +currentYearDec}][0-9]$`,
         "s"
@@ -201,17 +192,18 @@ export function setupCardExpYYBind(input, element) {
 
     function updateValue() {
         cardExpDateYYErrorField.innerHTML = "";
-        input.setCustomValidity("");
-        let inputValue = input.value.trim();
+        cardExpDateYYInput.setCustomValidity("");
+        cardExpDateYYInput.value = cardExpDateYYInput.value.replace(/\D/g, "");
+        let inputValue = cardExpDateYYInput.value.trim();
         if (!inputValue) {
-            element.innerHTML = "YY";
-            input.setAttribute("value", "");
+            cardExpDateYYPreview.innerHTML = "YY";
+            cardExpDateYYInput.setAttribute("value", "");
             return;
         }
 
         if (inputValue.length > 2) {
             inputValue = inputValue.substring(0, 2);
-            input.value = inputValue;
+            cardExpDateYYInput.value = inputValue;
             cardExpDateYYErrorField.innerHTML = "Max 2 digits";
             setTimeout(() => {
                 cardExpDateYYErrorField.innerHTML = "";
@@ -227,12 +219,12 @@ export function setupCardExpYYBind(input, element) {
             const delta = +newExpYY - +currentYear.substring(2, 4);
             console.log("delta ", delta);
             if (delta < 6 && delta >= 0) {
-                input.setAttribute("value", newExpYY);
-                element.innerHTML = newExpYY;
+                cardExpDateYYInput.setAttribute("value", newExpYY);
+                cardExpDateYYPreview.innerHTML = newExpYY;
             }
             return;
         }
         cardExpDateYYErrorField.innerHTML = "Invalid Date";
     }
-    input.oninput = updateValue;
+    cardExpDateYYInput.oninput = updateValue;
 }
