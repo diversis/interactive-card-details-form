@@ -5,33 +5,62 @@ import {
     setupCardExpMMBind,
     setupCardExpYYBind,
 } from "./bind.js";
-import { setupFormSubmit, showForm } from "./form.js";
+import { setupFormSubmit } from "./form.js";
+
+export let cardNumberErrorField;
+export let cardholderNameErrorField;
+export let cardExpDateMMErrorField;
+export let cardExpDateYYErrorField;
+export let cardCVCErrorField;
+
+export let cardNumberInput;
+export let cardholderNameInput;
+export let cardExpDateMMInput;
+export let cardExpDateYYInput;
+export let cardCVCInput;
+
+export let cardNumberPreview;
+export let cardholderNamePreview;
+export let cardExpDateMMPreview;
+export let cardExpDateYYPreview;
+export let cardCVCPreview;
+
+export let successMessageNode;
+
+export let cardForm;
+
 if (window) {
-    setupCardNumberBind(
-        document.querySelector("#card-number"),
-        document.querySelector("#card-front-number")
-    );
+    cardNumberInput = document.querySelector("#card-number");
+    cardholderNameInput = document.querySelector("#cardholder-name");
+    cardExpDateMMInput = document.querySelector("#expiration-date-mm");
+    cardExpDateYYInput = document.querySelector("#expiration-date-yy");
+    cardCVCInput = document.querySelector("#card-cvc");
 
-    setupCardCVCBind(
-        document.querySelector("#card-cvc"),
-        document.querySelector("#card-back-cvc")
-    );
+    cardNumberErrorField;
+    cardholderNameErrorField;
+    cardExpDateMMErrorField;
+    cardExpDateYYErrorField;
+    cardCVCErrorField;
 
-    setupCardholderNameBind(
-        document.querySelector("#cardholder-name"),
-        document.querySelector("#card-front-cardholder")
-    );
+    cardNumberPreview = document.querySelector("#card-front-number");
+    cardholderNamePreview = document.querySelector("#card-front-cardholder");
+    cardExpDateMMPreview = document.querySelector("#card-front-mm");
+    cardExpDateYYPreview = document.querySelector("#card-front-yy");
+    cardCVCPreview = document.querySelector("#card-back-cvc");
 
-    setupCardExpMMBind(
-        document.querySelector("#expiration-date-mm"),
-        document.querySelector("#card-front-mm")
-    );
+    cardForm = document.querySelector("#card-form");
 
-    setupCardExpYYBind(
-        document.querySelector("#expiration-date-yy"),
-        document.querySelector("#card-front-yy")
-    );
+    successMessageNode = document.querySelector("#form-success");
 
-    setupFormSubmit(document.querySelector("#form-card"));
-    document.querySelector("#reset-form").onclick = showForm;
+    setupCardNumberBind();
+
+    setupCardCVCBind();
+
+    setupCardholderNameBind();
+
+    setupCardExpMMBind();
+
+    setupCardExpYYBind();
+
+    setupFormSubmit();
 }

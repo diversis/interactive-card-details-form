@@ -1,4 +1,6 @@
 import {
+    cardForm,
+    successMessageNode,
     cardExpDateMMErrorField,
     cardExpDateYYErrorField,
     cardNumberErrorField,
@@ -9,11 +11,8 @@ import {
     cardNumberInput,
     cardholderNameInput,
     cardCVCInput,
-} from "./bind";
+} from "./main";
 import { currentYear, currentYearDec } from "./vars";
-
-let formCard;
-let successMessageNode;
 
 function formReset() {
     cardExpDateMMInput.value = "";
@@ -28,14 +27,6 @@ function formReset() {
     cardCVCInput.setAttribute("value", "");
 }
 
-export function showForm() {
-    formCard.hasAttribute("hidden") ? formCard.toggleAttribute("hidden") : null;
-
-    successMessageNode.hasAttribute("hidden")
-        ? null
-        : successMessageNode.toggleAttribute("hidden");
-}
-
 function showSuccessMessage() {
     formCard.hasAttribute("hidden") ? null : formCard.toggleAttribute("hidden");
 
@@ -44,98 +35,87 @@ function showSuccessMessage() {
         : null;
 }
 
-export function setupFormSubmit(form) {
+export function setupFormSubmit() {
     cardExpDateMMInput.setCustomValidity("");
     cardExpDateYYInput.setCustomValidity("");
     cardNumberInput.setCustomValidity("");
     cardholderNameInput.setCustomValidity("");
     cardCVCInput.setCustomValidity("");
-    formCard = form;
-    successMessageNode = document.querySelector("#form-success");
-    function handleFormSubmit(e) {
-        e.preventDefault();
-        const data = new FormData(form);
-
-        console.log(`\ncard-number: ${data.get("card-number")} \n`);
-        console.log(`\ncardholder: ${data.get("cardholder")} \n`);
-        console.log(
-            `\nexpiration-date-mm: ${data.get("expiration-date-mm")} \n`
-        );
-        console.log(
-            `\nexpiration-date-yy: ${data.get("expiration-date-yy")} \n`
-        );
-        console.log(`\ncard-cvc: ${data.get("card-cvc")} \n`);
-
-        let cardNumber = "";
-        let cardholderName = "";
-        let expDateMM = "";
-        let expDateYY = "";
-        let cardCVC = "";
-
-        try {
-            cardNumber = validateCardNumber(data.get("card-number").trim());
-            if (!cardNumber.valid) {
-                inputInvalid(
-                    cardNumberInput,
-                    cardNumberErrorField,
-                    cardNumber.data
-                );
-                // cardNumberInput.reportValidity();
-            }
-            cardholderName = validateCardholderName(
-                data.get("cardholder").trim()
-            );
-            if (!cardholderName.valid) {
-                inputInvalid(
-                    cardholderNameInput,
-                    cardholderNameErrorField,
-                    cardholderName.data
-                );
-            }
-            expDateMM = validateExpDateMM(
-                data.get("expiration-date-mm").trim()
-            );
-            if (!expDateMM.valid) {
-                inputInvalid(
-                    cardExpDateMMInput,
-                    cardExpDateMMErrorField,
-                    expDateMM.data
-                );
-            }
-            expDateYY = validateExpDateYY(
-                data.get("expiration-date-yy").trim()
-            );
-            if (!expDateYY.valid) {
-                inputInvalid(
-                    cardExpDateYYInput,
-                    cardExpDateYYErrorField,
-                    expDateYY.data
-                );
-            }
-            cardCVC = validateCardCVC(data.get("card-cvc").trim());
-            if (!cardCVC.valid) {
-                inputInvalid(cardCVCInput, cardCVCErrorField, cardCVC.data);
-            }
-
-            if (
-                cardNumber.valid &&
-                cardholderName.valid &&
-                expDateMM.valid &&
-                expDateYY.valid &&
-                cardCVC.valid
-            ) {
-                console.log("Form Submit Success!");
-                formReset();
-                showSuccessMessage();
-            }
-        } catch (error) {
-            console.log(error);
-            return;
-        }
-        return;
-    }
 
     form.onsubmit = handleFormSubmit;
+}
+
+function handleFormSubmit(e) {
+    e.preventDefault();
+    const data = new FormData(cardForm);
+
+    console.log(`\ncard-number: ${data.get("card-number")} \n`);
+    console.log(`\ncardholder: ${data.get("cardholder")} \n`);
+    console.log(`\nexpiration-date-mm: ${data.get("expiration-date-mm")} \n`);
+    console.log(`\nexpiration-date-yy: ${data.get("expiration-date-yy")} \n`);
+    console.log(`\ncard-cvc: ${data.get("card-cvc")} \n`);
+
+    let cardNumber = "";
+    let cardholderName = "";
+    let expDateMM = "";
+    let expDateYY = "";
+    let cardCVC = "";
+
+    try {
+        cardNumber = validateCardNumber(data.get("card-number").trim());
+        if (!cardNumber.valid) {
+            inputInvalid(
+                cardNumberInput,
+                cardNumberErrorField,
+                cardNumber.data
+            );
+            // cardNumberInput.reportValidity();
+        }
+        cardholderName = validateCardholderName(data.get("cardholder").trim());
+        if (!cardholderName.valid) {
+            inputInvalid(
+                cardholderNameInput,
+                cardholderNameErrorField,
+                cardholderName.data
+            );
+        }
+        expDateMM = validateExpDateMM(data.get("expiration-date-mm").trim());
+        if (!expDateMM.valid) {
+            inputInvalid(
+                cardExpDateMMInput,
+                cardExpDateMMErrorField,
+                expDateMM.data
+            );
+        }
+        expDateYY = validateExpDateYY(data.get("expiration-date-yy").trim());
+        if (!expDateYY.valid) {
+            inputInvalid(
+                cardExpDateYYInput,
+                cardExpDateYYErrorField,
+                expDateYY.data
+            );
+        }
+        cardCVC = validateCardCVC(data.get("card-cvc").trim());
+        if (!cardCVC.valid) {
+            inputInvalid(cardCVCInput, cardCVCErrorField, cardCVC.data);
+        }
+
+        if (
+            cardNumber.valid &&
+            cardholderName.valid &&
+            expDateMM.valid &&
+            expDateYY.valid &&
+            cardCVC.valid
+        ) {
+            console.log("Form Submit Success!");
+            formReset();
+            showSuccessMessage();
+        }
+    } catch (error) {
+        console.log(error);
+        return;
+    }
+    return;
 }
 
 function inputInvalid(input, errorField, errorMessage) {

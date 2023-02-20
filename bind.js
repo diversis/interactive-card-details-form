@@ -59,8 +59,8 @@ export function setupCardNumberBind(input, element) {
         cardNumberErrorField.innerHTML = "Invalid Number";
     }
     input.oninput = updateValue;
+    input.onchange = updateValue;
 }
-1234567890987654;
 
 export function setupCardholderNameBind(input, element) {
     cardholderNameInput = input;

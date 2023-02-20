@@ -416,7 +416,7 @@ summary,
     }
 }
 
-.form-card {
+.card-form {
     --form-padding: 2rem;
     --form-label-font-size: 80%;
 
@@ -433,7 +433,7 @@ summary,
 }
 
 @media screen and (min-width: 1280px) {
-    .form-card {
+    .card-form {
         width: min(50rem, 33vw);
         gap: 3em;
     }
@@ -496,7 +496,7 @@ summary,
     opacity: 1;
 }
 
-.form-card input[type="text"] {
+.card-form input[type="text"] {
     position: absolute;
     inset: 0;
     height: 2.5em;
@@ -510,11 +510,11 @@ summary,
     z-index: 100;
 }
 
-.form-card input[type="text"]:invalid {
+.card-form input[type="text"]:invalid {
     border-color: var(--clr-error);
 }
 
-.form-card input[type="text"]:focus {
+.card-form input[type="text"]:focus {
     border-color: transparent;
     outline: transparent;
     margin: 2px;
@@ -522,7 +522,7 @@ summary,
     height: calc(100% - 4px);
 }
 
-.form-card input[type="text"] + label {
+.card-form input[type="text"] + label {
     position: absolute;
     top: 1em;
     left: 1em;
@@ -537,14 +537,14 @@ summary,
 }
 
 @media screen and (min-width: 640px) {
-    .form-card input[type="text"] + label {
+    .card-form input[type="text"] + label {
         letter-spacing: 0.1rem;
     }
 }
 
-.form-card input[type="text"]:focus + label,
-.form-card input[type="text"]:not([value=""]) + label,
-.form-card input[type="text"]:not(:placeholder-shown) + label {
+.card-form input[type="text"]:focus + label,
+.card-form input[type="text"]:not([value=""]) + label,
+.card-form input[type="text"]:not(:placeholder-shown) + label {
     display: inline;
     left: 0;
     transform: translateY(-2.65em);
@@ -552,7 +552,7 @@ summary,
     opacity: 1;
 }
 
-.form-card input[type="text"]::placeholder {
+.card-form input[type="text"]::placeholder {
     color: var(--clr-secondary);
     pointer-events: none;
     font-size: var(--form-label-font-size);
@@ -562,7 +562,7 @@ summary,
 }
 
 @media screen and (min-width: 640px) {
-    .form-card input[type="text"]::placeholder {
+    .card-form input[type="text"]::placeholder {
         letter-spacing: 0.1rem;
     }
 }
