@@ -65,7 +65,9 @@ function handleFormSubmit(e) {
             );
             // cardNumberInput.reportValidity();
         }
-        cardholderName = validateCardholderName(data.get("cardholder").trim());
+        cardholderName = validateCardholderName(
+            data.get("cardholder-name").trim()
+        );
         if (!cardholderName.valid) {
             inputInvalid(
                 cardholderNameInput,
