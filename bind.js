@@ -21,7 +21,7 @@ import debounce from "lodash.debounce";
 export function setupCardNumberBind() {
     cardNumberInput.removeAttribute("required");
     cardNumberInput.removeAttribute("pattern");
-    const delayedClear = debounce((inputField, errorField) => {
+    const delayedClear = debounce((errorField) => {
         errorField.innerHTML = "";
     }, 3000);
 
@@ -42,7 +42,7 @@ export function setupCardNumberBind() {
             inputValue = inputValue.substring(0, 16);
             cardNumberInput.value = inputValue;
             cardNumberErrorField.innerHTML = "Max 16 digits";
-            delayedClear(cardNumberInput, cardNumberErrorField);
+            delayedClear(cardNumberErrorField);
         }
         const match = inputValue.match(/^\d{1,16}$/);
 
@@ -70,7 +70,7 @@ export function setupCardNumberBind() {
 export function setupCardholderNameBind() {
     cardholderNameInput.removeAttribute("required");
     cardholderNameInput.removeAttribute("pattern");
-    const delayedClear = debounce((inputField, errorField) => {
+    const delayedClear = debounce((errorField) => {
         errorField.innerHTML = "";
     }, 3000);
     updateValue();
@@ -94,7 +94,7 @@ export function setupCardholderNameBind() {
             cardholderNameInput.value = inputValue;
             cardholderNameErrorField.innerHTML = "Max 26 characters";
 
-            delayedClear(cardholderNameInput, cardholderNameErrorField);
+            delayedClear(cardholderNameErrorField);
         }
         const match = inputValue.match(/^(?<! )[-a-zA-Z' ]{1,26}$/);
         if (!!match && match.length > 0) {
@@ -111,7 +111,7 @@ export function setupCardholderNameBind() {
 export function setupCardCVCBind() {
     cardCVCInput.removeAttribute("required");
     cardCVCInput.removeAttribute("pattern");
-    const delayedClear = debounce((inputField, errorField) => {
+    const delayedClear = debounce((errorField) => {
         errorField.innerHTML = "";
     }, 3000);
 
@@ -132,7 +132,7 @@ export function setupCardCVCBind() {
             inputValue = inputValue.substring(0, 3);
             cardCVCInput.value = inputValue;
             cardCVCErrorField.innerHTML = "Max 3 digits";
-            delayedClear(cardCVCInput, cardCVCErrorField);
+            delayedClear(cardCVCErrorField);
         }
         const match = inputValue.match(/^\d{1,3}$/);
         if (!!match && match.length > 0) {
@@ -150,7 +150,7 @@ export function setupCardCVCBind() {
 export function setupCardExpMMBind() {
     cardExpDateMMInput.removeAttribute("required");
     cardExpDateMMInput.removeAttribute("pattern");
-    const delayedClear = debounce((inputField, errorField) => {
+    const delayedClear = debounce((errorField) => {
         errorField.innerHTML = "";
     }, 3000);
 
@@ -172,7 +172,7 @@ export function setupCardExpMMBind() {
             inputValue = inputValue.substring(0, 2);
             cardExpDateMMInput.value = inputValue;
             cardExpDateMMErrorField.innerHTML = "Max 2 digits";
-            delayedClear(cardExpDateMMInput, cardExpDateMMErrorField);
+            delayedClear(cardExpDateMMErrorField);
         }
         const match = inputValue.match(/^([0][1-9])$|^([1][0-2])$|^([0-9]?)$/);
         if (!!match && match.length > 0) {
@@ -190,7 +190,7 @@ export function setupCardExpMMBind() {
 export function setupCardExpYYBind() {
     cardExpDateYYInput.removeAttribute("required");
     cardExpDateYYInput.removeAttribute("pattern");
-    const delayedClear = debounce((inputField, errorField) => {
+    const delayedClear = debounce((errorField) => {
         errorField.innerHTML = "";
     }, 3000);
 
@@ -217,7 +217,7 @@ export function setupCardExpYYBind() {
             inputValue = inputValue.substring(0, 2);
             cardExpDateYYInput.value = inputValue;
             cardExpDateYYErrorField.innerHTML = "Max 2 digits";
-            delayedClear(cardExpDateYYInput, cardExpDateYYErrorField);
+            delayedClear(cardExpDateYYErrorField);
         }
 
         const match = inputValue.match(yearRegex);

@@ -11,26 +11,9 @@ import {
     cardNumberInput,
     cardholderNameInput,
     cardCVCInput,
+    formReset,
 } from "./main";
 import { currentYear, currentYearDec } from "./vars";
-
-function formReset() {
-    cardExpDateMMInput.value = "";
-    cardExpDateYYInput.value = "";
-    cardNumberInput.value = "";
-    cardholderNameInput.value = "";
-    cardCVCInput.value = "";
-    cardExpDateMMInput.setAttribute("value", "");
-    cardExpDateYYInput.setAttribute("value", "");
-    cardNumberInput.setAttribute("value", "");
-    cardholderNameInput.setAttribute("value", "");
-    cardCVCInput.setAttribute("value", "");
-    cardExpDateMMInput.setCustomValidity("");
-    cardExpDateYYInput.setCustomValidity("");
-    cardNumberInput.setCustomValidity("");
-    cardholderNameInput.setCustomValidity("");
-    cardCVCInput.setCustomValidity("");
-}
 
 function showSuccessMessage() {
     cardForm.hasAttribute("hidden") ? null : cardForm.toggleAttribute("hidden");

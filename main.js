@@ -29,6 +29,29 @@ export let successMessageNode;
 
 export let cardForm;
 
+export function formReset() {
+    cardExpDateMMInput.value = "";
+    cardExpDateYYInput.value = "";
+    cardNumberInput.value = "";
+    cardholderNameInput.value = "";
+    cardCVCInput.value = "";
+    cardExpDateMMPreview.innerHTML = "MM";
+    cardExpDateYYPreview.innerHTML = "YY";
+    cardNumberPreview.innerHTML = "0000 0000 0000 0000";
+    cardholderNamePreview.innerHTML = "Jane Appleseed";
+    cardCVCPreview.innerHTML = "000";
+    cardExpDateMMInput.setAttribute("value", "");
+    cardExpDateYYInput.setAttribute("value", "");
+    cardNumberInput.setAttribute("value", "");
+    cardholderNameInput.setAttribute("value", "");
+    cardCVCInput.setAttribute("value", "");
+    cardExpDateMMInput.setCustomValidity("");
+    cardExpDateYYInput.setCustomValidity("");
+    cardNumberInput.setCustomValidity("");
+    cardholderNameInput.setCustomValidity("");
+    cardCVCInput.setCustomValidity("");
+}
+
 if (window) {
     cardNumberInput = document.querySelector("#card-number");
     cardholderNameInput = document.querySelector("#cardholder-name");
