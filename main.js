@@ -35,8 +35,8 @@ export function formReset() {
     cardNumberInput.value = "";
     cardholderNameInput.value = "";
     cardCVCInput.value = "";
-    cardExpDateMMPreview.innerHTML = "MM";
-    cardExpDateYYPreview.innerHTML = "YY";
+    cardExpDateMMPreview.innerHTML = "00";
+    cardExpDateYYPreview.innerHTML = "00";
     cardNumberPreview.innerHTML = "0000 0000 0000 0000";
     cardholderNamePreview.innerHTML = "Jane Appleseed";
     cardCVCPreview.innerHTML = "000";

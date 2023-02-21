@@ -163,7 +163,7 @@ export function setupCardExpMMBind() {
         let inputValue = cardExpDateMMInput.value.trim();
 
         if (!inputValue) {
-            cardExpDateMMPreview.innerHTML = "MM";
+            cardExpDateMMPreview.innerHTML = "00";
             cardExpDateMMInput.setAttribute("value", "");
             return;
         }
@@ -208,7 +208,7 @@ export function setupCardExpYYBind() {
 
         let inputValue = cardExpDateYYInput.value.trim();
         if (!inputValue) {
-            cardExpDateYYPreview.innerHTML = "YY";
+            cardExpDateYYPreview.innerHTML = "00";
             cardExpDateYYInput.setAttribute("value", "");
             return;
         }
