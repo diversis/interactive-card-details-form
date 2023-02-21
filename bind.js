@@ -177,7 +177,7 @@ export function setupCardExpMMBind() {
         const match = inputValue.match(/^([0][1-9])$|^([1][0-2])$|^([0-9]?)$/);
         if (!!match && match.length > 0) {
             const newExpMM = match[0];
-            console.log(newExpMM);
+
             cardExpDateMMInput.setAttribute("value", newExpMM);
             cardExpDateMMPreview.innerHTML = newExpMM;
             return;
