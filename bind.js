@@ -43,7 +43,6 @@ export function setupCardNumberBind() {
             cardNumberInput.value = inputValue;
             cardNumberErrorField.innerHTML = "Max 16 digits";
             delayedClear(cardNumberInput, cardNumberErrorField);
-            return;
         }
         const match = inputValue.match(/^\d{1,16}$/);
 
@@ -97,7 +96,7 @@ export function setupCardholderNameBind() {
 
             delayedClear(cardholderNameInput, cardholderNameErrorField);
 
-            return;
+           
         }
         const match = inputValue.match(/^(?<! )[-a-zA-Z' ]{1,26}$/);
         if (!!match && match.length > 0) {
@@ -177,12 +176,11 @@ export function setupCardExpMMBind() {
             cardExpDateMMInput.value = inputValue;
             cardExpDateMMErrorField.innerHTML = "Max 2 digits";
             delayedClear(cardExpDateMMInput, cardExpDateMMErrorField);
-            return;
         }
         const match = inputValue.match(/^([0][1-9])$|^([1][0-2])$|^([0-9]?)$/);
         if (!!match && match.length > 0) {
             const newExpMM = match[0];
-
+            console.log(newExpMM);
             cardExpDateMMInput.setAttribute("value", newExpMM);
             cardExpDateMMPreview.innerHTML = newExpMM;
             return;
