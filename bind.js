@@ -95,8 +95,6 @@ export function setupCardholderNameBind() {
             cardholderNameErrorField.innerHTML = "Max 26 characters";
 
             delayedClear(cardholderNameInput, cardholderNameErrorField);
-
-           
         }
         const match = inputValue.match(/^(?<! )[-a-zA-Z' ]{1,26}$/);
         if (!!match && match.length > 0) {
@@ -135,7 +133,6 @@ export function setupCardCVCBind() {
             cardCVCInput.value = inputValue;
             cardCVCErrorField.innerHTML = "Max 3 digits";
             delayedClear(cardCVCInput, cardCVCErrorField);
-            return;
         }
         const match = inputValue.match(/^\d{1,3}$/);
         if (!!match && match.length > 0) {
@@ -221,7 +218,6 @@ export function setupCardExpYYBind() {
             cardExpDateYYInput.value = inputValue;
             cardExpDateYYErrorField.innerHTML = "Max 2 digits";
             delayedClear(cardExpDateYYInput, cardExpDateYYErrorField);
-            return;
         }
 
         const match = inputValue.match(yearRegex);
