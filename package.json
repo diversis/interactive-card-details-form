@@ -13,5 +13,9 @@
     "devDependencies": {
         "stylelint-config-standard": "^30.0.1",
         "vite": "^4.1.0"
+    },
+    "dependencies": {
+        "lodash.debounce": "^4.0.8",
+        "lodash.throttle": "^4.1.1"
     }
 }

@@ -141,7 +141,7 @@ function inputInvalid(input, errorField, errorMessage) {
 
 function validateCardNumber(inputCardNumber) {
     if (!inputCardNumber) return { valid: false, data: "Field is Required" };
-    const match = inputCardNumber.match(/^\d{13,16}$/s);
+    const match = inputCardNumber.match(/^\d{13,16}$/);
     if (!!match && match.length > 0) {
         const cardNumber = match[0];
         return { valid: true, data: cardNumber };
@@ -152,7 +152,7 @@ function validateCardNumber(inputCardNumber) {
 function validateCardholderName(inputCardholderName) {
     if (!inputCardholderName)
         return { valid: false, data: "Field is Required" };
-    const match = inputCardholderName.match(/^(?<! )[-a-zA-Z' ]{3,26}$/s);
+    const match = inputCardholderName.match(/^(?<! )[-a-zA-Z' ]{3,26}$/);
     if (!!match && match.length > 0) {
         const cardholderName = match[0];
         return { valid: true, data: cardholderName };
@@ -162,7 +162,7 @@ function validateCardholderName(inputCardholderName) {
 
 function validateExpDateMM(inputExpDateMM) {
     if (!inputExpDateMM) return { valid: false, data: "Field is Required" };
-    const match = inputExpDateMM.match(/^([0][1-9])|([1][0-2])$/s);
+    const match = inputExpDateMM.match(/^([0][1-9])$|^([1][0-2])$/);
     if (!!match && match.length > 0) {
         const expDateMM = match[0];
         return { valid: true, data: expDateMM };
@@ -190,7 +190,7 @@ function validateExpDateYY(inputExpDateYY) {
 
 function validateCardCVC(inputCardCVC) {
     if (!inputCardCVC) return { valid: false, data: "Field is Required" };
-    const match = inputCardCVC.match(/^\d{3}$/s);
+    const match = inputCardCVC.match(/^\d{3}$/);
     if (!!match && match.length > 0) {
         const cardCVC = match[0];
         return { valid: true, data: cardCVC };
