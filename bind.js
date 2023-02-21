@@ -44,7 +44,7 @@ export function setupCardNumberBind() {
             return;
         }
         const match = inputValue.match(/^\d{1,16}$/s);
-        console.log("number match: ", match);
+
         if (!!match && match.length > 0) {
             const newCard = match[0];
             cardNumberInput.setAttribute("value", newCard);
@@ -149,7 +149,6 @@ export function setupCardExpMMBind() {
         cardExpDateMMInput.value = cardExpDateMMInput.value.replace(/\D/g, "");
         let inputValue = cardExpDateMMInput.value.trim();
 
-        
         if (!inputValue) {
             cardExpDateMMPreview.innerHTML = "MM";
             cardExpDateMMInput.setAttribute("value", "");
@@ -211,13 +210,12 @@ export function setupCardExpYYBind() {
             return;
         }
 
-        console.log(yearRegex.toString());
         const match = inputValue.match(yearRegex);
 
         if (!!match && match.length > 0) {
             const newExpYY = match[0];
             const delta = +newExpYY - +currentYear.substring(2, 4);
-            console.log("delta ", delta);
+
             if (delta < 6 && delta >= 0) {
                 cardExpDateYYInput.setAttribute("value", newExpYY);
                 cardExpDateYYPreview.innerHTML = newExpYY;

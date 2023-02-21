@@ -60,11 +60,11 @@ function handleFormSubmit(e) {
     e.preventDefault();
     const data = new FormData(cardForm);
 
-    console.log(`\ncard-number: ${data.get("card-number")} \n`);
-    console.log(`\ncardholder: ${data.get("cardholder")} \n`);
-    console.log(`\nexpiration-date-mm: ${data.get("expiration-date-mm")} \n`);
-    console.log(`\nexpiration-date-yy: ${data.get("expiration-date-yy")} \n`);
-    console.log(`\ncard-cvc: ${data.get("card-cvc")} \n`);
+    // console.log(`\ncard-number: ${data.get("card-number")} \n`);
+    // console.log(`\ncardholder: ${data.get("cardholder")} \n`);
+    // console.log(`\nexpiration-date-mm: ${data.get("expiration-date-mm")} \n`);
+    // console.log(`\nexpiration-date-yy: ${data.get("expiration-date-yy")} \n`);
+    // console.log(`\ncard-cvc: ${data.get("card-cvc")} \n`);
 
     let cardNumber = "";
     let cardholderName = "";
@@ -181,7 +181,6 @@ function validateExpDateYY(inputExpDateYY) {
     if (!!match && match.length > 0) {
         const expDateYY = match[0];
         const delta = +expDateYY - +currentYear.substring(2, 4);
-        console.log("delta ", delta);
         if (delta < 6 && delta >= 0) {
             return { valid: true, data: expDateYY };
         }
